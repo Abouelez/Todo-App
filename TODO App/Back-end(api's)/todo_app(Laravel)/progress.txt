@@ -1,0 +1,3 @@
+finish register, login and logout
+finsish add new task
+
