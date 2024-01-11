@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\Auth\AuthenticationController;
 use App\Http\Controllers\API\TaskController;
+use App\Http\Controllers\API\HomePageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,7 @@ Route::post('login', [AuthenticationController::class, 'login']);
 Route::middleware('auth:sanctum')->get('logout', [AuthenticationController::class, 'logout']);
 
 Route::apiResource('tasks', TaskController::class)->middleware('auth:sanctum');
-
+Route::middleware('auth:sanctum')->get('home', [HomePageController::class, 'home']);
 //test authentication
 Route::middleware('auth:sanctum')->get('/test', function () {
     return Auth::user();

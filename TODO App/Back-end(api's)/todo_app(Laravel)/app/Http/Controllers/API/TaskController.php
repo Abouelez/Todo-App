@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateTaskRequest;
 use App\Models\Task;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +32,9 @@ class TaskController extends Controller
      */
     public function store(CreateTaskRequest $request)
     {
+        if (!$request->has('date')) {
+            $request['date'] = Carbon::parse(Carbon::today())->format('Y-m-d');
+        }
         $request['user_id'] = Auth::user()->id;
         $task = Task::create($request->all());
 
