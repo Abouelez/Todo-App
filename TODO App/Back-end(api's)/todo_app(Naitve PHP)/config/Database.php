@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\config\Database;
+namespace Config;
 
 use PDO;
 use PDOException;
@@ -13,8 +13,8 @@ class Database
     private function __construct()
     {
         $host = getenv('DB_HOST');
-        $db_name = getenv('DB_NAME');
-        $user = getenv('DB_USER');
+        $db_name = getenv('DB_DATABASE');
+        $user = getenv('DB_USERNAME');
         $pass = getenv('DB_PASSWORD');
 
         try {
